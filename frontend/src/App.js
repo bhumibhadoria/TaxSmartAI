@@ -1,10 +1,16 @@
-import React from "react";
-import TaxPlanner from "./components/TaxPlanner";
+import React from 'react';
+import TaxPlanner from './components/TaxPlanner';
+import './index';
 
 function App() {
   return (
     <div className="App">
-      <TaxPlanner />
+      <header className="App-header">
+        <h1>TaxSmart AI</h1>
+      </header>
+      <main>
+        <TaxPlanner />
+      </main>
     </div>
   );
 }

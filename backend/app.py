@@ -16,8 +16,22 @@ def tax_planner():
     expenses = user_data['expenses']
     investments = user_data['investments']
 
-    suggestion = tax_model.suggest_tax_savings(income, expenses, investments)
-    return jsonify({'suggestion': suggestion})
+    suggestion, record_id = tax_model.suggest_tax_savings(income, expenses, investments)
+    return jsonify({
+        'suggestion': suggestion,
+        'record_id': record_id
+    })
+
+@app.route('/verify-tax-record', methods=['POST'])
+def verify_tax_record():
+    data = request.json
+    record_id = data['record_id']
+    income = data['income']
+    expenses = data['expenses']
+    investments = data['investments']
+
+    is_valid = tax_model.verify_tax_record(record_id, income, expenses, investments)
+    return jsonify({'is_valid': is_valid})
 
 if __name__ == '__main__':
     app.run(debug=True)
