@@ -9,7 +9,7 @@ function TaxPlanner() {
     investments: ''
   });
   const [suggestion, setSuggestion] = useState('');
-  const [recordId, setRecordId] = useState('');
+  const [blockchainRecord, setBlockchainRecord] = useState(null);
   const [verificationResult, setVerificationResult] = useState(null);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ function TaxPlanner() {
     setLoading(true);
     setError('');
     setSuggestion('');
-    setRecordId('');
+    setBlockchainRecord(null);
     setVerificationResult(null);
 
     try {
@@ -37,7 +37,7 @@ function TaxPlanner() {
         investments: parseInt(formData.investments)
       });
       setSuggestion(response.data.suggestion);
-      setRecordId(response.data.record_id);
+      setBlockchainRecord(response.data.blockchain_record);
     } catch (err) {
       setError('An error occurred while fetching the suggestion. Please try again.');
       console.error('Error:', err);
@@ -53,12 +53,9 @@ function TaxPlanner() {
 
     try {
       const response = await axios.post('http://localhost:5000/verify-tax-record', {
-        record_id: recordId,
-        income: parseInt(formData.income),
-        expenses: parseInt(formData.expenses),
-        investments: parseInt(formData.investments)
+        block_index: blockchainRecord.block_index
       });
-      setVerificationResult(response.data.is_valid);
+      setVerificationResult(response.data.valid);
     } catch (err) {
       setError('An error occurred during verification. Please try again.');
       console.error('Error:', err);
@@ -71,7 +68,39 @@ function TaxPlanner() {
     <div className="tax-planner">
       <h2>AI Tax Planner</h2>
       <form onSubmit={handleSubmit}>
-        {/* ... (existing form inputs) ... */}
+        <div className="form-group">
+          <label htmlFor="income">Annual Income (₹)</label>
+          <input
+            type="number"
+            id="income"
+            name="income"
+            value={formData.income}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="expenses">Annual Expenses (₹)</label>
+          <input
+            type="number"
+            id="expenses"
+            name="expenses"
+            value={formData.expenses}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="investments">Current Investments (₹)</label>
+          <input
+            type="number"
+            id="investments"
+            name="investments"
+            value={formData.investments}
+            onChange={handleChange}
+            required
+          />
+        </div>
         <button type="submit" disabled={loading}>
           {loading ? 'Processing...' : 'Get Tax Suggestions'}
         </button>
@@ -81,10 +110,16 @@ function TaxPlanner() {
         <div className="suggestion">
           <h3>Tax Saving Suggestion:</h3>
           <p>{suggestion}</p>
-          <p>Record ID: {recordId}</p>
-          <button onClick={handleVerify} disabled={loading}>
-            Verify Record
-          </button>
+          {blockchainRecord && (
+            <div>
+              <p>Block Index: {blockchainRecord.block_index}</p>
+              <p>Block Hash: {blockchainRecord.block_hash}</p>
+              <p>Timestamp: {blockchainRecord.timestamp}</p>
+              <button onClick={handleVerify} disabled={loading}>
+                Verify Record
+              </button>
+            </div>
+          )}
         </div>
       )}
       {verificationResult !== null && (
