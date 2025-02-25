@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>TaxSmart AI</h1>
+        {/* <h1>TaxSmart AI</h1> */}
       </header>
       <main>
         <TaxPlanner />
