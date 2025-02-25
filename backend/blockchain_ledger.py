@@ -13,8 +13,9 @@ class TaxBlock:
         self.hash = self.calculate_hash()
         
     def calculate_hash(self) -> str:
-        block_string = json.dumps(self.__dict__, sort_keys=True)
-        return hashlib.sha256(block_string.encode()).hexdigest()
+        tax_data_string = json.dumps(self.tax_data, sort_keys=True)
+        return hashlib.sha256(tax_data_string.encode()).hexdigest()
+
 
 class TaxLedger:
     def __init__(self):
