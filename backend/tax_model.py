@@ -18,7 +18,7 @@ class TaxModel:
     # ... (keep existing train method)
     def train(self):
         try:
-            data_path = r"C:\Users\91809\OneDrive\Desktop\TaxSmart\data\financial_data.csv"
+            data_path = r"C:\Users\91809\OneDrive\Desktop\TaxSmart\data\synthetic_financial_data.csv"
             
             # Load and prepare data
             data = pd.read_csv(data_path)
