@@ -17,3 +17,4 @@ urllib3==2.2.1
 web3==7.8.0
 Werkzeug==3.0.2
 yarl>=1.17.0,<2.0
+gunicorn==21.2.0
