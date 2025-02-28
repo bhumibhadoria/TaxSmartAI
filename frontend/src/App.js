@@ -18,7 +18,7 @@ function TaxPlanner() {
   const [fetchedData, setFetchedData] = useState(null);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/api/data`)
+    fetch("https://taxsmart-backend.onrender.com/")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -44,7 +44,7 @@ function TaxPlanner() {
     setVerificationResult(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/tax-planner", {
+      const response = await axios.post("https://taxsmart-backend.onrender.com/tax-planner", {
         income: parseInt(formData.income),
         expenses: parseInt(formData.expenses),
         investments: parseInt(formData.investments),
@@ -65,7 +65,7 @@ function TaxPlanner() {
     setVerificationResult(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/verify-tax-record", {
+      const response = await axios.post("https://taxsmart-backend.onrender.com/verify-tax-record", {
         block_index: blockchainRecord.block_index,
       });
       setVerificationResult(response.data.valid);
