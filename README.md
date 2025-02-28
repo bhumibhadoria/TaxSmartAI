@@ -18,6 +18,10 @@ TaxSmart AI employs a combination of AI, blockchain, and modern web technologies
 - **Blockchain**: Ethereum (Truffle, Ganache)
 - **Database**: MongoDB
 
+## Architectue Diagram
+<img width="362" alt="image" src="https://github.com/user-attachments/assets/9d780369-b6ba-4b64-a728-adcf87fa85d4" />
+
+
 ## Results
 - **AI Tax Optimization**: Analyzes tax-saving opportunities and provides users with personalized recommendations.
 - **Blockchain Verification**: Ensures tax documents are tamper-proof and accessible for audits.
@@ -68,10 +72,7 @@ cd frontend
 npm start
 ```
 
-Navigate to [http://localhost:3000](http://localhost:3000) to access the application.
+Navigate to [TaxSmart AI](https://taxsmart.netlify.app/) to access the application.
 
 ## License
 This project is licensed under the MIT License.
-
-## Acknowledgments
-We would like to acknowledge the contributions of the open-source community and the support of our collaborators in building TaxSmart AI. Thank you for your support!
