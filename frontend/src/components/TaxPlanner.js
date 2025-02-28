@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FaCalculator, FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
-import "./TaxPlanner.css";
+import "../components/TaxPlanner.css";
 
 function TaxPlanner() {
   const [formData, setFormData] = useState({
