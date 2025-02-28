@@ -4,7 +4,7 @@ from flask_cors import CORS
 from tax_model import TaxModel
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://taxsmart.netlify.app"])
 
 # Initialize and train the model
 tax_model = TaxModel()
