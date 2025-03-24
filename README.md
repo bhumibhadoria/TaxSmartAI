@@ -16,7 +16,7 @@ TaxSmart AI employs a combination of AI, blockchain, and modern web technologies
 - **Backend**: Flask
 - **AI Model**: Scikit-learn
 - **Blockchain**: Ethereum (Truffle, Ganache)
-- **Database**: MongoDB
+- **Database**: PostgreSQL
 
 ## Architectue Diagram
 <img width="362" alt="image" src="https://github.com/user-attachments/assets/9d780369-b6ba-4b64-a728-adcf87fa85d4" />
